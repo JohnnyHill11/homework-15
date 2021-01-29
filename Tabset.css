@@ -1,0 +1,16 @@
+.tabset-title {
+border: 1px solid #000;
+} 
+.tabset-body {
+  border: 1px solid #000;
+}
+.tabset-title-item {
+  cursor: pointer;
+  border-left: 1px solid #000;
+}
+.tabset-body-item {
+  display: none;
+}  
+.tabset-body-item.active {
+  display: block;
+} 

@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+.tabs {
+  max-width: 700px;
+  background: #9dc6dd;
+  margin: 0 auto;
+  border: 1px solid #000000;
+}
+.list-title {
+  display: flex;
+  /* border-bottom: 1px solid #131212; */
+  
+}
+.title {
+  background: #7fe3f0;
+  text-transform: uppercase;
+  padding: 10px 5px;
+  width: 100%;
+  text-align: center;
+  border-right:  1px solid #000000;
+} 
+.title:hover {
+  background: #9dc6dd;
+  border-bottom: none;
+}
+.title.active {
+  background: #9dc6dd;
+}
+.list-body {
+  padding: 20px 20px;
+}
+.body {
+  text-transform: uppercase;
+  text-align: center;
+}
+/* .body.active {
+  display: block;
+} */
