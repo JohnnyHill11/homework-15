@@ -1,12 +1,14 @@
 .tabset-title {
-border: 1px solid #000;
+  display: flex;
 } 
 .tabset-body {
-  border: 1px solid #000;
+  padding: 20px 20px;
 }
 .tabset-title-item {
   cursor: pointer;
-  border-left: 1px solid #000;
+}
+.tabset-title-item.active {
+  background: #9dc6dd;
 }
 .tabset-body-item {
   display: none;

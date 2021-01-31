@@ -11,39 +11,52 @@ class Tabset {
     this._element = element;
     this.bindClassTitle(element);
     this.bindClassBody(element);
-    this.bindEventListener(element);
-    
-    element.firstElementChild.addEventListener('click', (e) => this.cliclHandler);
+    this.bindEventListener();
+    this.show(0);
   }
     
     bindClassTitle(element) {
-      const tabsetTitle = element.children[0];
-      tabsetTitle.classList.add(Tabset.TITLE_CLASS);
+      this.tabsetTitle = element.children[0];
+      this.tabsetTitle.classList.add(Tabset.TITLE_CLASS);
 
-      Array.prototype.forEach.call(tabsetTitle.children,(tabsetTitleItem) => {
+      Array.prototype.forEach.call(this.tabsetTitle.children,(tabsetTitleItem) => {
         tabsetTitleItem.classList.add(Tabset.TITLE_ITEM_CLASS);
       });
     }
 
     bindClassBody(element) {
-      const tabsetBody = element.children[1];
-      tabsetBody.classList.add(Tabset.BODY_CLASS);
+      this.tabsetBody = element.children[1];
+      this.tabsetBody.classList.add(Tabset.BODY_CLASS);
 
-      Array.prototype.forEach.call(tabsetBody.children,(tabsetBodyItem) => {
+      Array.prototype.forEach.call(this.tabsetBody.children,(tabsetBodyItem) => {
         tabsetBodyItem.classList.add(Tabset.BODY_ITEM_CLASS);
       });
     }
     
-    bindEventListener(element) {
-      element.children[0].addEventListener('click',this.cliclHandler);
+    bindEventListener() {
+      this.tabsetTitle.addEventListener('click',(el) => this.clickHandler(el));
     }
 
-    cliclHandler(event) {
-    let itemBody = event.target.parentElement.parentElement;
-    let bodyEl = itemBody.children[1].children;
+    clickHandler(event) {
+      if(event.target.classList.contains(Tabset.TITLE_ITEM_CLASS)) {
+      const index = Array.prototype.indexOf.call(this.tabsetTitle.children, event.target); 
+      this.show(index);
+      } 
+    }
+    hideAll() {
+    for (let i = 0; i < this.tabsetTitle.children.length; i++) {
+      this.hide(i);
+      }
+    }
 
-    Array.prototype.forEach.call(bodyEl,(tabsetBodyItem) => {
-      tabsetBodyItem.classList.add(Tabset.ACTIVE_CLASS);
-    });  
+    hide(index) {
+      this.tabsetTitle.children[index].classList.remove(Tabset.ACTIVE_CLASS);
+      this.tabsetBody.children[index].classList.remove(Tabset.ACTIVE_CLASS);
   }
+  
+    show(index) {
+      this.hideAll();
+      this.tabsetTitle.children[index].classList.add(Tabset.ACTIVE_CLASS);
+      this.tabsetBody.children[index].classList.add(Tabset.ACTIVE_CLASS);
+    }
 }
